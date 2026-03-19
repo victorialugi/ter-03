@@ -1,0 +1,17 @@
+# inventory.ini.example
+# Это пример того, как выглядит сгенерированный Ansible inventory после terraform apply
+# Реальные значения IP-адресов и fqdn заменены на *** для безопасности
+
+[webservers]
+# две ВМ из count-задания
+web-1    ansible_host=***.***.***.***    fqdn=***.ru-central1.internal
+web-2    ansible_host=***.***.***.***    fqdn=***.ru-central1.internal
+
+[databases]
+# две ВМ из for_each-задания
+main     ansible_host=***.***.***.***    fqdn=***.ru-central1.internal
+replica  ansible_host=***.***.***.***    fqdn=***.ru-central1.internal
+
+[storage]
+# oдна ВМ из задания 3
+storage  ansible_host=***.***.***.***    fqdn=***.ru-central1.internal
