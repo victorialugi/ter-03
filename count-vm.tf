@@ -10,7 +10,7 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8e5jmcvep85j33nt0e"
+      image_id = data.yandex_compute_image.ubuntu.id
       size     = 10
       type     = "network-hdd"
     }

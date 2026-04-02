@@ -4,27 +4,28 @@ variable "web_provision" {
 }
 
 locals {
+
   webservers = [
-    for i in range(length(yandex_compute_instance.web)) : {
-      name          = yandex_compute_instance.web[i].name
-      ansible_host  = yandex_compute_instance.web[i].network_interface[0].nat_ip_address
-      fqdn          = yandex_compute_instance.web[i].fqdn
+    for vm in yandex_compute_instance.web : {
+      name         = vm.name
+      ansible_host = vm.network_interface[0].nat_ip_address
+      fqdn         = vm.fqdn
     }
   ]
 
   databases = [
-    for key, vm in yandex_compute_instance.db : {
-      name          = vm.name
-      ansible_host  = vm.network_interface[0].nat_ip_address
-      fqdn          = vm.fqdn
+    for vm in yandex_compute_instance.db : {
+      name         = vm.name
+      ansible_host = vm.network_interface[0].nat_ip_address
+      fqdn         = vm.fqdn
     }
   ]
 
   storage = [
     {
-      name          = yandex_compute_instance.storage.name
-      ansible_host  = yandex_compute_instance.storage.network_interface[0].nat_ip_address
-      fqdn          = yandex_compute_instance.storage.fqdn
+      name         = yandex_compute_instance.storage.name
+      ansible_host = yandex_compute_instance.storage.network_interface[0].nat_ip_address
+      fqdn         = yandex_compute_instance.storage.fqdn
     }
   ]
 }
